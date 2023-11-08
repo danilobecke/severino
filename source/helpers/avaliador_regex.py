@@ -5,45 +5,31 @@ from source.excecoes.expressao_invalida import ExpressaoInvalida
 from source.modelos.regex_grupo_interesse import RegexGrupoInteresse
 
 class AvaliadorRegex():
-    def __init__ (self, regex: str, grupos_interesse: list[RegexGrupoInteresse]) -> None:
-        """
-        Parâmetros:
-            - regex: regex
-            - groupos_interese: grupos de interesse
-        """
-        self.__regex=regex
+    def __init__(self, regex: str, grupos_interesse: list[RegexGrupoInteresse]) -> None:
+        self.__regex = regex
         self.__grupos_interesse = grupos_interesse
 
-    def avaliar (self, expressao: str) -> list[Any]:
+    def avaliar(self, expressao: str) -> list[Any]:
         """
         Avalia se a expressão é aceita pelo Regex passado na incialização.\n
         Caso seja aceita, retorna uma lista com as variáveis capturadas pelos grupos de interesse já convertidas em seus respectivos tipos.\n
         Caso contrário, lança a exceção `ExpressaoInvalida`.
         """
-        matches = self.__avaliar_regex (expressao)
+        matches = self.__avaliar_regex(expressao)
         return self.__try_extrair_elementos(matches)
 
-    def __avaliar_regex (self, expressao: str) -> Match[str]:
-        """
-        Check se valid, raise ExpInv se nao
-        """
-        matches=re_match(self.__regex, expressao)
+    def __avaliar_regex(self, expressao: str) -> Match[str]:
+        matches = re_match(self.__regex, expressao)
         if not matches:
             raise ExpressaoInvalida()
         return matches
 
-    def __try_extrair_elementos (self, matches: Match[str]) -> list[Any]:
+    def __try_extrair_elementos(self, matches: Match[str]) -> list[Any]:
         try:
             return self.__extrair_elementos(matches)
         except Exception:
             raise ExpressaoInvalida()
 
-    def __extrair_elementos (self, matches: Match[str]) -> list[Any]:
+    def __extrair_elementos(self, matches: Match[str]) -> list[Any]:
         grupos = matches.groups()
-        # resultado: list[Any] = []
-        # for grupo_interesse in self.__grupos_interesse:
-        #     valor_capturado = grupos[grupo_interesse.index]
-        #     valor_convertido = grupo_interesse.tipo(valor_capturado)
-        #     resultado.append(valor_convertido)
-        # return resultado
         return [grupo_interesse.tipo(grupos[grupo_interesse.index]) for grupo_interesse in self.__grupos_interesse]
