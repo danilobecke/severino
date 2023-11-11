@@ -1,3 +1,5 @@
 # Severino
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/7036ce3655054bca8250/maintainability)](https://codeclimate.com/github/danilobecke/severino/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/7036ce3655054bca8250/test_coverage)](https://codeclimate.com/github/danilobecke/severino/test_coverage) [![Testes](https://github.com/danilobecke/severino/actions/workflows/testes.yml/badge.svg)](https://github.com/danilobecke/severino/actions/workflows/testes.yml) [![Validador de Tipos (MyPy)](https://github.com/danilobecke/severino/actions/workflows/mypy.yml/badge.svg)](https://github.com/danilobecke/severino/actions/workflows/mypy.yml) [![Linter (Pylint)](https://github.com/danilobecke/severino/actions/workflows/lint.yml/badge.svg)](https://github.com/danilobecke/severino/actions/workflows/lint.yml)
+
 CLI desenvolvida para o minicurso: `Elevando a Qualidade do Código: Princípios de Código Limpo e CI com GitHub Actions` ministrado no dia 25/10/2023 para a IX Semana da Computação do IFSP Campus Catanduva.
