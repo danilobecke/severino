@@ -1,0 +1,25 @@
+name: Linter (Pylint)
+run-name: Rodando Pylint
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - source/**
+      - tests/**
+      - configs/.pylintrc
+  workflow_dispatch:
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Configurar Python
+              uses: actions/setup-python@v4
+              with:
+                python-version: 3.11
+            - name: Configurar Severino
+              run: make setup
+            - name: Rodar Pylint
+              run: make lint
