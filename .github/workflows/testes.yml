@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - main
-  pull_request:
   workflow_dispatch:
 jobs:
     testes:
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -18,5 +19,8 @@ jobs:
                 python-version: 3.11
             - name: Configurar Severino
               run: make setup
-            - name: Rodar os testes
-              run: make pytest
+            - name: Rodar os testes & coletar informacoes de coverage
+              uses: paambaati/codeclimate-action@v4.0.0
+              with:
+                coverageCommand: make pytest
+                debug: true

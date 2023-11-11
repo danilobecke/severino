@@ -17,6 +17,6 @@ setup:
 mypy:
 	$(MYPY) source tests --config-file configs/mypy.ini
 pytest:
-	$(PYTEST) --cov-report term-missing:skip-covered --cov=source
+	$(PYTEST) --cov-report term-missing:skip-covered --cov-report xml:coverage.xml --cov=source
 pylint:
 	$(PYLINT) source/* tests/* --rcfile=configs/.pylintrc
