@@ -22,4 +22,4 @@ jobs:
             - name: Configurar Severino
               run: make setup
             - name: Rodar Pylint
-              run: make lint
+              run: make pylint
